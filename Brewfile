@@ -1,8 +1,9 @@
-tap "homebrew/core"
-tap "homebrew/cask"
 tap "homebrew/bundle"
+tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "warrensbox/tap"
 
 brew "python"
 brew "awscli"
@@ -43,6 +44,7 @@ brew "youtube-dl"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 brew "warrensbox/tap/tfswitch"
+brew "minikube"
 cask "1password"
 cask "aerial"
 cask "audio-hijack"
@@ -72,6 +74,7 @@ cask "transmit"
 cask "tweetbot"
 cask "visual-studio-code"
 cask "webstorm"
+cask "google-backup-and-sync"
 
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122

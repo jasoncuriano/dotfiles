@@ -5,7 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 # Add Homebrew and Homebrew's installed binaries to your path
-export PATH="/opt/homebrew/bin:/opt/homebrew/Cellar:/opt/homebrew/opt:$PATH"
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/opt/homebrew/Cellar:/opt/homebrew/opt:$PATH"
 
 # GOPATH Environment Variable
 export GOPATH="$HOME/go"
@@ -110,3 +110,5 @@ fi
 alias python=/usr/local/bin/python3
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
+
+source ~/.secrets

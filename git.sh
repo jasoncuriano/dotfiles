@@ -15,6 +15,20 @@ then
   git config --global user.email "$GIT_EMAIL"
 fi
 
+
+git config --global core.excludesfile ~/.gitexcludes_global
+# Global excludes file
+read -p "Overwrite global excludes file?" -n 1 -r 
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  [[ -f "~/.gitexcludes_global" ]] || rm ~/.gitexcludes_global  
+  [[ ! -f "~/.gitexcludes_global" ]] || touch ~/.gitexcludes_global
+  wget 'https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore' -O - >> ~/.gitexcludes_global
+fi
+
+
+
 # Set git to use the osxkeychain credential helper
 git config --global credential.helper osxkeychain
 

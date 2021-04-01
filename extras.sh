@@ -11,10 +11,12 @@ read -p "Pull down and overwrite .zshrc? Yn" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then  
-  [[ ! -f ~/.zshrc ]] || rm ~/.zshrc
+  [[ ! -f "~/.zshrc" ]] || rm ~/.zshrc
   # Copy down Zsh config
   curl -LSso ~/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
 fi
+
+[[ ! -f "~/.secrets" ]] || touch ~/.secrets
 
 # Copy down iTerm profile config - needs manual upload to iTerm
 curl -LSso ~/itermprofile.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/profile.json
