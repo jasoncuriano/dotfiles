@@ -4,10 +4,11 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "warrensbox/tap"
-
-brew "python"
+brew "ack"
+brew "python@3.9"
 brew "awscli"
 brew "bash"
+brew "bash-completion@2"
 brew "coreutils"
 brew "curl"
 brew "diff-so-fancy"
@@ -22,8 +23,10 @@ brew "gnu-sed"
 brew "go"
 brew "grep"
 brew "htop"
+brew "libheif"
 brew "imagemagick"
 brew "jq"
+brew "kompose"
 brew "kubernetes-cli"
 brew "mas"
 brew "moreutils"
@@ -31,7 +34,6 @@ brew "neovim"
 brew "node"
 brew "openssh"
 brew "pv"
-brew "pyenv"
 brew "reattach-to-user-namespace"
 brew "screen"
 brew "skaffold"
@@ -44,26 +46,26 @@ brew "youtube-dl"
 brew "zsh"
 brew "zsh-syntax-highlighting"
 brew "warrensbox/tap/tfswitch"
-brew "minikube"
 cask "1password"
 cask "aerial"
 cask "audio-hijack"
 cask "backblaze"
+cask "beyond-compare"
 cask "daisydisk"
-cask "dash"
 cask "discord"
 cask "elmedia-player"
 cask "farrago"
+cask "firefox"
 cask "font-jetbrains-mono"
+cask "google-backup-and-sync"
 cask "google-chrome"
 cask "istat-menus"
 cask "iterm2"
-cask "lepton"
+cask "little-snitch"
 cask "pastebot"
 cask "postman"
 cask "protonvpn"
 cask "pycharm-ce"
-cask "sketch"
 cask "slack"
 cask "soundsource"
 cask "spotify"
@@ -73,20 +75,21 @@ cask "telegram"
 cask "transmit"
 cask "tweetbot"
 cask "visual-studio-code"
-cask "webstorm"
-cask "google-backup-and-sync"
-
+cask "webstorm", args: { appdir: "~/Applications" }
 mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
-mas "com.pixelmatorteam.pixelmator.x", id: 1289583905
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Pixelmator Pro", id: 1289583905
+mas "Playgrounds", id: 1496833156
 mas "Poolside FM", id: 1514817810
 mas "Things", id: 904280696
+mas "Tomato 2", id: 1494210770
 mas "Twitter", id: 1482454543
+mas "Webull Desktop", id: 1334590352
 mas "Xcode", id: 497799835
