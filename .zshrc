@@ -108,7 +108,8 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias python=/usr/local/bin/python3
-
+alias tf='terraform'
+alias k='kubectl'
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
 source ~/.secrets
