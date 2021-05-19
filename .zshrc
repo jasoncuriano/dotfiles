@@ -4,13 +4,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Add Homebrew and Homebrew's installed binaries to your path
-export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:/opt/homebrew/Cellar:/opt/homebrew/opt:$PATH"
+# Add Homebrew and Homebrew's installed binaries to your $PATH
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 # GOPATH Environment Variable
 export GOPATH="$HOME/go"
 # Add GOPATH to PATH
 export PATH="$GOPATH/bin:$PATH"
+
+# n Version Manager for Node
+export N_PREFIX="$HOME/.n"
+# Add N_PREFIX to PATH
+export PATH="$N_PREFIX/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -91,7 +96,8 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR="nvim"
+  export EDITOR='vim'
+  #export EDITOR="nvim"
   #export EDITOR='mvim'
 fi
 

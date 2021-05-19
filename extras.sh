@@ -3,6 +3,8 @@
 # Install Poetry for python
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 
+# Silence last login messages in iTerm
+touch ~/.hushlogin
 
 # Install oh-my-zsh
 [[ ! -d "~/.oh-my-zsh" ]] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
