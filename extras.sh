@@ -6,9 +6,14 @@ curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poet
 # Silence last login messages in iTerm
 touch ~/.hushlogin
 
+# Terraform Tfswitch binary location setup
+mkdir -p ~/.tfswitch/bin
+echo "bin = \"\$HOME/.tfswitch/bin/terraform\"" > ~/.tfswitch.toml
+
 # Install oh-my-zsh
 [[ ! -d "~/.oh-my-zsh" ]] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+# .zshrc config
 read -p "Pull down and overwrite .zshrc? Yn" -n 1 -r 
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
@@ -21,14 +26,8 @@ fi
 [[ ! -f "~/.secrets" ]] || touch ~/.secrets
 
 # Copy down iTerm profile config - needs manual upload to iTerm
-curl -LSso ~/itermprofile.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/profile.json
-echo "iTerm profile config copied to ~/.itermprofile.json, please upload to iTerm."
+curl -LSso ~/JC_iTerm.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/JC_iTerm.json
+echo "iTerm profile copied to ~/.JC_iTerm.json, please upload to iTerm."
 
-# https://github.com/zsh-users/zsh-autosuggestions
-#[[ ! -d "~/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]] || git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}"/plugins/zsh-autosuggestions
-
-[[ ! -d "~/.oh-my-zsh/custom/themes/powerlevel10k" ]] || git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/themes/powerlevel10k
-
-# Configure Git https://github.com/olivierverdier/zsh-git-prompt
-
+# Reload shell
 exec "$SHELL"

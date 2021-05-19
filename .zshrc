@@ -17,6 +17,10 @@ export N_PREFIX="$HOME/.n"
 # Add N_PREFIX to PATH
 export PATH="$N_PREFIX/bin:$PATH"
 
+# Terraform binary path for tfswitch
+export TF_PATH="$HOME/.tfswitch/bin"
+export PATH="$TF_PATH:$PATH"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
