@@ -8,7 +8,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then  
   echo "Enter the git user.name"
   read -p "> " -r GIT_NAME
-  echo "Enter the git user.email (this should be your noreply email if you have privary turned on)"
+  echo "Enter the git user.email (this should be your noreply email if you have privacy turned on)"
   read -p "> " -r GIT_EMAIL
 
   git config --global user.name "$GIT_NAME"
