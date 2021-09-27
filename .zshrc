@@ -118,11 +118,12 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias python=/usr/local/bin/python3
+
 alias tf='terraform'
-#alias k='kubectl'
-#complete -F __start_kubectl k
-source <(kubectl completion zsh)  # setup autocomplete in zsh into the current shell
-echo "[[ $commands[kubectl] ]] && source <(kubectl completion zsh)" >> ~/.zshrc # add autocomplete permanently to your zsh shell
+
+alias k='kubectl'
+complete -F __start_kubectl k
+[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
