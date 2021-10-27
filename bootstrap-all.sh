@@ -11,9 +11,13 @@ wait_for_space() {
 }
 wait_for_space
 
+echo "Making macos.sh executable"
+chmod +x "macos.sh"
+echo "Running macos.sh"
+sh "macos.sh"
+
 declare -a ListOfScripts=(
     "homebrew.sh"
-    "macos.sh"
     "git.sh"
     "ssh.sh"
     "extras.sh"
@@ -28,3 +32,5 @@ for script in "${ListOfScripts[@]}"; do
    echo "Running $script"
    sh "${script}"
 done
+
+exec "$SHELL"

@@ -16,7 +16,7 @@ if [[ $? != 0 ]] ; then
     HOMEBREW_PREFIX="/usr/local"
     fi
     export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
-    exec -l "$SHELL"
+    brew bundle install
 else
     # Make sure we’re using the latest Homebrew.
     echo "Homebrew already installed, updating.."

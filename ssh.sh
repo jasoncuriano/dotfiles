@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-mkdir "$HOME"/.ssh
-chmod 0700 "$HOME"/.ssh
+[[ ! -d '"$HOME"/.ssh' ]] || mkdir "$HOME"/.ssh && chmod 0700 "$HOME"/.ssh || echo "Created dir"$HOME"/.ssh"
 
 read -p "Generate SSH Key?" -n 1 -r 
 echo

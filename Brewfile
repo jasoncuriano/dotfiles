@@ -6,7 +6,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "warrensbox/tap"
 brew "ack"
-brew "python@3.9"
+brew "python"
 brew "awscli"
 brew "bash"
 brew "bash-completion@2"
@@ -29,7 +29,6 @@ brew "jq"
 brew "kompose"
 brew "kubernetes-cli"
 brew "kubectx"
-brew "mas"
 brew "minikube"
 brew "moreutils"
 brew "n"
@@ -59,7 +58,7 @@ cask "elmedia-player"
 cask "farrago"
 cask "firefox"
 cask "font-jetbrains-mono"
-cask "google-backup-and-sync"
+cask "google-drive"
 cask "google-chrome"
 cask "istat-menus"
 cask "iterm2"
@@ -78,21 +77,20 @@ cask "telegram"
 cask "transmit"
 cask "tweetbot"
 cask "visual-studio-code"
-cask "webstorm", args: { appdir: "~/Applications" }
-mas "Amphetamine", id: 937984704
-mas "Bear", id: 1091189122
-mas "Calcbot", id: 931657367
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Magnet", id: 441258766
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Pixelmator Pro", id: 1289583905
-mas "Playgrounds", id: 1496833156
-mas "Poolside FM", id: 1514817810
-mas "Things", id: 904280696
-mas "Tomato 2", id: 1494210770
-mas "Twitter", id: 1482454543
-mas "Webull Desktop", id: 1334590352
-mas "Xcode", id: 497799835
+cask "webstorm"
+cask "figma"
+# mas "Amphetamine", id: 937984704
+# mas "Calcbot", id: 931657367
+# mas "GarageBand", id: 682658836
+# mas "iMovie", id: 408981434
+# mas "Keynote", id: 409183694
+# mas "Magnet", id: 441258766
+# mas "Numbers", id: 409203825
+# mas "Pages", id: 409201541
+# mas "Pixelmator Pro", id: 1289583905
+# mas "Playgrounds", id: 1496833156
+# mas "Poolside FM", id: 1514817810
+# mas "Things", id: 904280696
+# mas "Twitter", id: 1482454543
+# mas "Webull Desktop", id: 1334590352
+# mas "Xcode", id: 497799835

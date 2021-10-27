@@ -18,7 +18,7 @@ fi
 
 git config --global core.excludesfile ~/.gitexcludes_global
 # Global excludes file
-read -p "Overwrite global excludes file?" -n 1 -r 
+read -p "Pull down and overwrite global excludes file?" -n 1 -r 
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
@@ -58,7 +58,4 @@ git config --global pull.ff true # Pull is fast-forwarded if possible, otherwise
 # In this directory, create an src sub-directory. 
 # For each repository host, create a subdirectory in src that matches your username
 # but they pay off when you have many projects, some of which are on different version control hosts.
-mkdir -p ~/code/src/github.com/jasoncuriano/
-mkdir -p ~/code/src/gitlab.com/jasoncuriano/
-
-cat ~/.gitconfig
+[[ ! -d "~/code/src/github.com/jasoncuriano/" ]] || mkdir -p ~/code/src/github.com/jasoncuriano/

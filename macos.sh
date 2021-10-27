@@ -138,7 +138,7 @@ defaults write com.Apple.Dock show-recents -bool false
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Create the locate database
-launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+[[ ! -d "/var/db/locate.database" ]] || launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 
 ###############################################################################
 # Activity Monitor                                                            #
