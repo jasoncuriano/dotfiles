@@ -1,9 +1,10 @@
-tap "hashicorp/tap"
+tap "homebrew/core"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
+tap "homebrew/cask-drivers"
+tap "hashicorp/tap"
 tap "warrensbox/tap"
 brew "ack"
 brew "python"
@@ -48,6 +49,7 @@ brew "zsh"
 brew "zsh-syntax-highlighting"
 brew "hashicorp/tap/vault"
 brew "warrensbox/tap/tfswitch"
+brew "shellcheck"
 cask "1password"
 cask "aerial"
 cask "audio-hijack"
@@ -62,7 +64,6 @@ cask "google-drive"
 cask "google-chrome"
 cask "istat-menus"
 cask "iterm2"
-cask "little-snitch"
 cask "pastebot"
 cask "postman"
 cask "protonvpn"
@@ -79,18 +80,5 @@ cask "tweetbot"
 cask "visual-studio-code"
 cask "webstorm"
 cask "figma"
-# mas "Amphetamine", id: 937984704
-# mas "Calcbot", id: 931657367
-# mas "GarageBand", id: 682658836
-# mas "iMovie", id: 408981434
-# mas "Keynote", id: 409183694
-# mas "Magnet", id: 441258766
-# mas "Numbers", id: 409203825
-# mas "Pages", id: 409201541
-# mas "Pixelmator Pro", id: 1289583905
-# mas "Playgrounds", id: 1496833156
-# mas "Poolside FM", id: 1514817810
-# mas "Things", id: 904280696
-# mas "Twitter", id: 1482454543
-# mas "Webull Desktop", id: 1334590352
-# mas "Xcode", id: 497799835
+cask "sketch"
+cask "logitech-options"

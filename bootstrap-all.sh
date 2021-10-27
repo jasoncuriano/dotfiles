@@ -32,5 +32,3 @@ for script in "${ListOfScripts[@]}"; do
    echo "Running $script"
    sh "${script}"
 done
-
-exec "$SHELL"

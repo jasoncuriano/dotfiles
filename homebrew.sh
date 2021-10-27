@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-which -s brew
-
-if [[ $? != 0 ]] ; then
+if ! which -s brew; then
+    echo "Homebrew not found, attempting install."
     # Install Homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -19,7 +18,7 @@ if [[ $? != 0 ]] ; then
     brew bundle install
 else
     # Make sure we’re using the latest Homebrew.
-    echo "Homebrew already installed, updating.."
+    echo "Homebrew already installed, updating."
     brew update
     brew bundle install
 fi

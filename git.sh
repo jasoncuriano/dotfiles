@@ -8,7 +8,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then  
   echo "Enter the git user.name"
   read -p "> " -r GIT_NAME
-  echo "Enter the git user.email (this should be your noreply email if you have privacy turned on)"
+  echo "Enter the git user.email (this should be your GitHub noreply email if you have privacy turned on)"
   read -p "> " -r GIT_EMAIL
 
   git config --global user.name "$GIT_NAME"
@@ -22,12 +22,10 @@ read -p "Pull down and overwrite global excludes file?" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  [[ -f "~/.gitexcludes_global" ]] || rm ~/.gitexcludes_global  
-  [[ ! -f "~/.gitexcludes_global" ]] || touch ~/.gitexcludes_global
+  [[ -f "$HOME/.gitexcludes_global" ]] || rm ~/.gitexcludes_global  
+  [[ ! -f "$HOME/.gitexcludes_global" ]] || touch ~/.gitexcludes_global
   wget 'https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore' -O - >> ~/.gitexcludes_global
 fi
-
-
 
 # Set git to use the osxkeychain credential helper
 git config --global credential.helper osxkeychain
@@ -58,4 +56,10 @@ git config --global pull.ff true # Pull is fast-forwarded if possible, otherwise
 # In this directory, create an src sub-directory. 
 # For each repository host, create a subdirectory in src that matches your username
 # but they pay off when you have many projects, some of which are on different version control hosts.
-[[ ! -d "~/code/src/github.com/jasoncuriano/" ]] || mkdir -p ~/code/src/github.com/jasoncuriano/
+if [[ -d "$HOME/code/src/github.com/jasoncuriano" ]]
+then
+    echo "Dir $HOME/code/src/github.com/jasoncuriano already exists." 
+else
+    echo "Error: Dir $HOME/code/src/github.com/jasoncuriano does not exist, creating.."
+    mkdir -p "$HOME"/code/src/github.com/jasoncuriano/
+fi
