@@ -9,12 +9,10 @@ export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
 # GOPATH Environment Variable
 export GOPATH="$HOME/go"
-# Add GOPATH to PATH
 export PATH="$GOPATH/bin:$PATH"
 
 # n Version Manager for Node
 export N_PREFIX="$HOME/.n"
-# Add N_PREFIX to PATH
 export PATH="$N_PREFIX/bin:$PATH"
 
 # Terraform binary path for tfswitch
@@ -74,7 +72,7 @@ ZSH_THEME="robbyrussell"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -88,6 +86,9 @@ ZSH_THEME="robbyrussell"
 plugins=(colored-man-pages colorize python brew)
 
 source $ZSH/oh-my-zsh.sh
+# Static loading of Antibody plugins
+# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
+source ~/.zsh_plugins.sh
 
 # User configuration
 
@@ -101,8 +102,6 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
   export EDITOR='vim'
-  #export EDITOR="nvim"
-  #export EDITOR='mvim'
 fi
 
 # Compilation flags
@@ -122,13 +121,9 @@ alias python=/usr/local/bin/python3
 alias tf='terraform'
 
 alias k='kubectl'
-complete -F __start_kubectl k
-[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+source <(kubectl completion zsh)
+compdef __start_kubectl k
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
 source ~/.secrets
-
-# Static loading of Antibody plugins
-# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
-source ~/.zsh_plugins.sh
