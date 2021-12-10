@@ -128,3 +128,7 @@ complete -F __start_kubectl k
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
 source ~/.secrets
+
+# Static loading of Antibody plugins
+# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
+source ~/.zsh_plugins.sh

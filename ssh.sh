@@ -9,9 +9,14 @@ else
     chmod 0700 "$HOME"/.ssh
 fi
 
-read -p "Run ssh-keygen to generate new RSA4096 key?" -n 1 -r 
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then  
-  ssh-keygen -t rsa -b 4096
+if [[ -f "$HOME/.ssh/id_rsa" ]]
+then
+    echo "SSH Key $HOME/.ssh/id_rsa already exists." 
+else
+    read -p "Run ssh-keygen to generate new RSA4096 key?" -n 1 -r 
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then  
+      ssh-keygen -t rsa -b 4096
+    fi
 fi

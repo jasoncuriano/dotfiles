@@ -140,9 +140,9 @@ defaults write com.Apple.Dock show-recents -bool false
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Create the locate database
-if [[ -d "/var/db/locate.database" ]]
+if [[ -f "/var/db/locate.database" ]]
 then
-    echo "Dir /var/db/locate.database already exists." 
+    echo "File /var/db/locate.database already exists." 
 else
     echo "Error: Dir /var/db/locate.database does not exist, load locate db service.."
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
