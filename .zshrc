@@ -3,6 +3,9 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+# Static loading of Antibody plugins
+# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
+source ~/.zsh_plugins.sh
 
 # Add Homebrew and Homebrew's installed binaries to your $PATH
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
@@ -86,9 +89,6 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(colored-man-pages colorize python brew)
 
 source $ZSH/oh-my-zsh.sh
-# Static loading of Antibody plugins
-# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
-source ~/.zsh_plugins.sh
 
 # User configuration
 
