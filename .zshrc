@@ -22,6 +22,10 @@ export PATH="$N_PREFIX/bin:$PATH"
 export TF_PATH="$HOME/.tfswitch/bin"
 export PATH="$TF_PATH:$PATH"
 
+# Path for Poetry
+export POETRY_PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$POETRY_PATH:$PATH"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME

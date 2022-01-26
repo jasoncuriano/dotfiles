@@ -3,7 +3,7 @@
 # Install Poetry for python
 if ! which -s poetry; then
     echo "Poetry not found, attempting install."
-    curl -sSL https://install.python-poetry.org | python3 -
+    curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
 else
     # Make sure we’re using the latest Homebrew.
     echo "Poetry already installed, updating."
