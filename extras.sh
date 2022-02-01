@@ -4,10 +4,12 @@
 if ! which -s poetry; then
     echo "Poetry not found, attempting install."
     curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
+    poetry config virtualenvs.in-project true
 else
     # Make sure we’re using the latest Homebrew.
     echo "Poetry already installed, running 'poetry self update'"
     poetry self update
+    poetry config virtualenvs.in-project true
 fi
 
 # Silence last login messages in iTerm
@@ -80,7 +82,13 @@ else
 fi
 
 
-# zsh_plugins.txt config for Antibody plugin manager
+# zsh_plugins for Antibody plugin manager
+function download_and_setup_antibody_zsh_plugins() {
+    curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
+    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
+    antibody update
+}
+
 if [[ -f "$HOME/.zsh_plugins.txt" ]]
 then
     read -p "File $HOME/.zsh_plugins.txt already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
@@ -88,13 +96,9 @@ then
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
         rm "$HOME/.zsh_plugins.txt"
-        curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
-        antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
-        antibody update
+        download_and_setup_antibody_zsh_plugins
     fi
 else
     echo "File $HOME/.zsh_plugins.txt does not exist, creating.."
-    curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
-    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
-    antibody update
+    download_and_setup_antibody_zsh_plugins
 fi

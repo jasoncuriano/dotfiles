@@ -16,15 +16,31 @@ then
 fi
 
 
-git config --global core.excludesfile ~/.gitexcludes_global
 # Global excludes file
-read -p "Pull down and overwrite global excludes file?" -n 1 -r 
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+git config --global core.excludesfile ~/.gitexcludes_global
+
+function download_gitexcludes() {
+  wget -q 'https://raw.githubusercontent.com/github/gitignore/main/Global/macOS.gitignore' -O - >> "$HOME/.gitexcludes_global"
+  wget -q 'https://raw.githubusercontent.com/github/gitignore/main/Go.gitignore' -O - >> "$HOME/.gitexcludes_global"
+  wget -q 'https://raw.githubusercontent.com/github/gitignore/main/Python.gitignore' -O - >> "$HOME/.gitexcludes_global"
+  wget -q 'https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore' -O - >> "$HOME/.gitexcludes_global"
+  wc -l "$HOME/.gitexcludes_global"
+}
+
+if [[ -f "$HOME/.gitexcludes_global" ]]
 then
-  [[ -f "$HOME/.gitexcludes_global" ]] || rm ~/.gitexcludes_global  
-  [[ ! -f "$HOME/.gitexcludes_global" ]] || touch ~/.gitexcludes_global
-  wget 'https://raw.githubusercontent.com/github/gitignore/master/Global/macOS.gitignore' -O - >> ~/.gitexcludes_global
+    read -p "File $HOME/.gitexcludes_global already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        rm "$HOME/.gitexcludes_global"
+        touch "$HOME/.gitexcludes_global"
+        download_gitexcludes
+    fi
+else
+    echo "File $HOME/.gitexcludes_global does not exist, creating.."
+    touch "$HOME/.gitexcludes_global"
+    download_gitexcludes
 fi
 
 # Set git to use the osxkeychain credential helper
