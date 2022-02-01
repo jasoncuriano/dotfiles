@@ -6,7 +6,7 @@ if ! which -s poetry; then
     curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
 else
     # Make sure we’re using the latest Homebrew.
-    echo "Poetry already installed, updating."
+    echo "Poetry already installed, running 'poetry self update'"
     poetry self update
 fi
 
@@ -15,7 +15,7 @@ if [[ -f "$HOME/.hushlogin" ]]
 then
     echo "File $HOME/.hushlogin already exists." 
 else
-    echo "Error: File $HOME/.hushlogin does not exist, creating.."
+    echo "File $HOME/.hushlogin does not exist, creating.."
     touch "$HOME"/.hushlogin
 fi
 
@@ -24,7 +24,7 @@ if [[ -d "$HOME/.tfswitch/bin" ]]
 then
     echo "Dir $HOME/.tfswitch/bin already exists." 
 else
-    echo "Error: Dir $HOME/.tfswitch/bin does not exist, creating.."
+    echo "Dir $HOME/.tfswitch/bin does not exist, creating.."
     mkdir -p "$HOME"/.tfswitch/bin
 fi
 
@@ -33,7 +33,7 @@ if [[ -f "$HOME/.tfswitch.toml" ]]
 then
     echo "File $HOME/.tfswitch.toml already exists." 
 else
-    echo "Error: File $HOME/.tfswitch.toml does not exist, creating.."
+    echo "File $HOME/.tfswitch.toml does not exist, creating.."
     echo "bin = \"\$HOME/.tfswitch/bin/terraform\"" > "$HOME/.tfswitch.toml"
 fi
 
@@ -51,37 +51,50 @@ if [[ -f "$HOME/.secrets" ]]
 then
     echo "File $HOME/.secrets already exists." 
 else
-    echo "Error: File $HOME/.secrets does not exist, creating.."
+    echo "File $HOME/.secrets does not exist, creating.."
     touch "$HOME"/.secrets
 fi
 
 # Copy down iTerm profile config - needs manual upload to iTerm
 if [[ -f "$HOME/JC_iTerm.json" ]]
 then
-    echo "File $HOME/JC_iTerm.json already exists." 
+    echo "File $HOME/JC_iTerm.json already exists, manually upload this to iTerm." 
 else
-    echo "Error: File $HOME/JC_iTerm.json does not exist, creating.."
+    echo "File $HOME/JC_iTerm.json does not exist, creating.. (manually upload this to iTerm)"
     curl -LSso "$HOME"/JC_iTerm.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/JC_iTerm.json
 fi
 
 # .zshrc config
-read -p "Pull down and overwrite .zshrc from github? Yn" -n 1 -r 
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then  
-  [[ ! -f "$HOME/.zshrc" ]] || rm ~/.zshrc
-  curl -LSso ~/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
+if [[ -f "$HOME/.zshrc" ]]
+then
+    read -p "File $HOME/.zshrc already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        rm "$HOME/.zshrc"
+        curl -LSso "$HOME"/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
+    fi
+else
+    echo "File $HOME/.zshrc does not exist, creating.."
+    curl -LSso "$HOME"/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
 fi
 
+
 # zsh_plugins.txt config for Antibody plugin manager
-read -p "Pull down and overwrite .zsh_plugins.txt from github? Yn" -n 1 -r 
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then  
-  [[ ! -f "$HOME/.zsh_plugins.txt" ]] || rm ~/.zsh_plugins.txt
-  curl -LSso ~/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zsh_plugins.txt
-  antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-  antibody update
+if [[ -f "$HOME/.zsh_plugins.txt" ]]
+then
+    read -p "File $HOME/.zsh_plugins.txt already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+        rm "$HOME/.zsh_plugins.txt"
+        curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
+        antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
+        antibody update
+    fi
+else
+    echo "File $HOME/.zsh_plugins.txt does not exist, creating.."
+    curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
+    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
+    antibody update
 fi
-antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-antibody update
