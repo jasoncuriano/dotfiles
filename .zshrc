@@ -10,21 +10,17 @@ source ~/.zsh_plugins.sh
 # Add Homebrew and Homebrew's installed binaries to your $PATH
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
 
-# GOPATH Environment Variable
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
+# Go Path Environment Variable
+export PATH="$HOME/go/bin:$PATH"
 
 # n Version Manager for Node
-export N_PREFIX="$HOME/.n"
-export PATH="$N_PREFIX/bin:$PATH"
+export PATH="$HOME/.n/bin:$PATH"
 
 # Terraform binary path for tfswitch
-export TF_PATH="$HOME/.tfswitch/bin"
-export PATH="$TF_PATH:$PATH"
+export PATH="$HOME/.tfswitch/bin:$PATH"
 
 # Path for Poetry
-export POETRY_PATH="$HOME/.poetry/bin:$PATH"
-export PATH="$POETRY_PATH:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -48,10 +44,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+export DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -121,12 +117,14 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias python=/usr/local/bin/python3
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 alias tf='terraform'
 
 alias k='kubectl'
-source <(kubectl completion zsh)
-compdef __start_kubectl k
+[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
