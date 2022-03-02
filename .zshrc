@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -130,5 +130,11 @@ alias k='kubectl'
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
+
+# Regen static zsh plugins https://getantibody.github.io/usage/
+function antibody_regen() {
+    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
+    antibody update
+}
 
 source ~/.secrets
