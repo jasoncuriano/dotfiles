@@ -124,6 +124,8 @@ export PATH="$PYENV_ROOT/bin:$PATH"    # if `pyenv` is not already on PATH
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 
+alias python='python3'
+
 alias tf='terraform'
 
 alias k='kubectl'
