@@ -128,6 +128,9 @@ alias python='python3'
 
 alias tf='terraform'
 
+# Avoid Homebrew formulae from accidentally linking against a Pyenv-provided Python
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+
 alias k='kubectl'
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
