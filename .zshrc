@@ -123,17 +123,20 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"    # if `pyenv` is not already on PATH
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
-
-alias python='python3'
-
-alias tf='terraform'
-
 # Avoid Homebrew formulae from accidentally linking against a Pyenv-provided Python
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
 
+alias python='python3'
+alias py='python'
+
+alias tf='terraform'
+
 alias k='kubectl'
+
+# kubectl autocomplete
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
+#kube-ps1
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
 PROMPT='$(kube_ps1)'$PROMPT
