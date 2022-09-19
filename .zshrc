@@ -137,9 +137,11 @@ alias k='kubectl'
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
 
 #kube-ps1
+export KUBE_PS1_SYMBOL_ENABLE="false"
+export KUBE_PS1_SYMBOL_USE_IMG="false"
+export KUBE_PS1_CTX_COLOR="yellow"
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
 PS1='$(kube_ps1)'$PS1
-PROMPT='$(kube_ps1)'$PROMPT
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
