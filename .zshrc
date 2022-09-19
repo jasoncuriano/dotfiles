@@ -119,23 +119,27 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+## Node
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
+
+## Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"    # if `pyenv` is not already on PATH
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 # Avoid Homebrew formulae from accidentally linking against a Pyenv-provided Python
 alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
-
 alias python='python3'
 alias py='python'
 
+## Terraform
 alias tf='terraform'
 
+## k8s
 alias k='kubectl'
-
 # kubectl autocomplete
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
-
 #kube-ps1
 export KUBE_PS1_SYMBOL_ENABLE="false"
 export KUBE_PS1_SYMBOL_USE_IMG="false"
