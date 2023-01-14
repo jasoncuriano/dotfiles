@@ -98,13 +98,13 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+    export EDITOR='vim'
 else
-  export EDITOR='vim'
+    export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -119,16 +119,46 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+## Node
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
+
+## Python
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"    # if `pyenv` is not already on PATH
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+# Avoid Homebrew formulae from accidentally linking against a Pyenv-provided Python
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+alias python='python3'
+alias py='python'
 
+## Terraform
 alias tf='terraform'
 
+## k8s
 alias k='kubectl'
+# kubectl autocomplete
 [[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+#kube-ps1
+export KUBE_PS1_SYMBOL_ENABLE="false"
+export KUBE_PS1_SYMBOL_USE_IMG="false"
+export KUBE_PS1_CTX_COLOR="yellow"
+source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
+
+# Regen static zsh plugins https://getantibody.github.io/usage/
+function antibody_regen() {
+    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
+    antibody update
+}
+
+function fix_discord() {
+    sudo killall Discord
+    rm -rf "$HOME/Library/Application Support/discord"
+    open -a "/Applications/Discord.app"
+}
 
 source ~/.secrets
