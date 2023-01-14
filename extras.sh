@@ -10,6 +10,7 @@ else
     echo "Poetry already installed, running 'poetry self update'"
     poetry self update
     poetry config virtualenvs.in-project true
+    poetry config virtualenvs.prefer-active-python true
 fi
 
 # Silence last login messages in iTerm

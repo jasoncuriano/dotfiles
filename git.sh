@@ -72,10 +72,10 @@ git config --global pull.ff true # Pull is fast-forwarded if possible, otherwise
 # In this directory, create an src sub-directory. 
 # For each repository host, create a subdirectory in src that matches your username
 # but they pay off when you have many projects, some of which are on different version control hosts.
-if [[ -d "$HOME/code/src/github.com/jasoncuriano" ]]
+if [[ -d "$HOME/code" ]]
 then
-    echo "Dir $HOME/code/src/github.com/jasoncuriano already exists." 
+    echo "Dir $HOME/code already exists." 
 else
-    echo "Error: Dir $HOME/code/src/github.com/jasoncuriano does not exist, creating.."
-    mkdir -p "$HOME"/code/src/github.com/jasoncuriano/
+    echo "Error: Dir $HOME/code does not exist, creating.."
+    mkdir -p "$HOME"/code
 fi
