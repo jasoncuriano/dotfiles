@@ -149,8 +149,8 @@ PS1='$(kube_ps1)'$PS1
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
 # Antigen ZSH Plugins
-#source $HOME/.antigen.zsh
-#antigen init $HOME/.antigenrc
+source $HOME/.antigen.zsh
+antigen init $HOME/.antigenrc
 
 # Git Aliases
 alias gs="git status"
