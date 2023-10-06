@@ -6,9 +6,6 @@ autoload -U compinit && compinit
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# Static loading of Antibody plugins
-# Run 'antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh' when plugins are changed
-source ~/.zsh_plugins.sh
 
 # Add Homebrew and Homebrew's installed binaries to your $PATH
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
@@ -70,7 +67,7 @@ export UPDATE_ZSH_DAYS=13
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -137,16 +134,6 @@ alias py='python'
 
 ## Terraform
 alias tf='terraform'
-# tfswitch
-load-tfswitch() {
-    local terraform_versionfile_path="main.tf"
-    
-    if [ -f "$terraform_versionfile_path" ]; then
-        tfswitch
-    fi
-}
-add-zsh-hook chpwd load-tfswitch
-load-tfswitch
 
 ## k8s
 alias k='kubectl'
@@ -162,8 +149,8 @@ PS1='$(kube_ps1)'$PS1
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
 # Antigen ZSH Plugins
-source $HOME/.antigen.zsh
-antigen init $HOME/.antigenrc
+#source $HOME/.antigen.zsh
+#antigen init $HOME/.antigenrc
 
 # Git Aliases
 alias gs="git status"
@@ -193,3 +180,13 @@ function tail-docker-pretty {
 
 #Show CWD on prompt
 PROMPT=${PROMPT/\%c/\%~}
+
+load-tfswitch() {
+    local terraform_versionfile_path="main.tf"
+    
+    if [ -f "$terraform_versionfile_path" ]; then
+        tfswitch
+    fi
+}
+add-zsh-hook chpwd load-tfswitch
+load-tfswitch

@@ -55,8 +55,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-# Trackpad: Enable Natural scrolling (New behavior)
-defaults write NSGlobalDomain com.apple.swipescrolldirection -int 1
+# Trackpad: Disable Natural scrolling (New behavior)
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 # Trackpad: swipe between pages with three fingers
 defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
