@@ -1,72 +1,5 @@
 #!/usr/bin/env bash
 
-# Install Poetry for python
-if ! which -s poetry; then
-    echo "Poetry not found, attempting install."
-    curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
-    poetry config virtualenvs.in-project true
-else
-    # Make sure we’re using the latest Homebrew.
-    echo "Poetry already installed, running 'poetry self update'"
-    poetry self update
-    poetry config virtualenvs.in-project true
-    poetry config virtualenvs.prefer-active-python true
-fi
-
-# Silence last login messages in iTerm
-if [[ -f "$HOME/.hushlogin" ]]
-then
-    echo "File $HOME/.hushlogin already exists." 
-else
-    echo "File $HOME/.hushlogin does not exist, creating.."
-    touch "$HOME"/.hushlogin
-fi
-
-# Terraform Tfswitch binary location setup
-if [[ -d "$HOME/.tfswitch/bin" ]]
-then
-    echo "Dir $HOME/.tfswitch/bin already exists." 
-else
-    echo "Dir $HOME/.tfswitch/bin does not exist, creating.."
-    mkdir -p "$HOME"/.tfswitch/bin
-fi
-
-# Terraform Tfswitch toml config setup
-if [[ -f "$HOME/.tfswitch.toml" ]]
-then
-    echo "File $HOME/.tfswitch.toml already exists." 
-else
-    echo "File $HOME/.tfswitch.toml does not exist, creating.."
-    echo "bin = \"\$HOME/.tfswitch/bin/terraform\"" > "$HOME/.tfswitch.toml"
-fi
-
-# Install oh-my-zsh
-if [[ -d "$HOME/.oh-my-zsh" ]]
-then
-    echo "Dir $HOME/.oh-my-zsh already exists." 
-else
-    echo "Dir $HOME/.oh-my-zsh does not exist, running oh-my-zsh installer."
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-# Create a ~/.secrets file
-if [[ -f "$HOME/.secrets" ]]
-then
-    echo "File $HOME/.secrets already exists." 
-else
-    echo "File $HOME/.secrets does not exist, creating.."
-    touch "$HOME"/.secrets
-fi
-
-# Copy down iTerm profile config - needs manual upload to iTerm
-if [[ -f "$HOME/JC_iTerm.json" ]]
-then
-    echo "File $HOME/JC_iTerm.json already exists, manually upload this to iTerm." 
-else
-    echo "File $HOME/JC_iTerm.json does not exist, creating.. (manually upload this to iTerm)"
-    curl -LSso "$HOME"/JC_iTerm.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/JC_iTerm.json
-fi
-
 # .zshrc config
 if [[ -f "$HOME/.zshrc" ]]
 then
@@ -82,6 +15,71 @@ else
     curl -LSso "$HOME"/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
 fi
 
+# Install Poetry for python
+if ! which -s poetry; then
+    echo "Poetry not found, attempting install."
+    curl -sSL https://install.python-poetry.org | python3 -
+    curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
+else
+    # Make sure we’re using the latest Homebrew.
+    echo "Poetry already installed, running 'poetry self update'"
+    poetry self update
+    poetry config virtualenvs.prefer-active-python true
+fi
+
+# Silence last login messages in iTerm
+if [[ -f "$HOME/.hushlogin" ]]
+then
+    echo "File $HOME/.hushlogin already exists."
+else
+    echo "File $HOME/.hushlogin does not exist, creating.."
+    touch "$HOME"/.hushlogin
+fi
+
+# Terraform Tfswitch binary location setup
+if [[ -d "$HOME/.tfswitch/bin" ]]
+then
+    echo "Dir $HOME/.tfswitch/bin already exists."
+else
+    echo "Dir $HOME/.tfswitch/bin does not exist, creating.."
+    mkdir -p "$HOME"/.tfswitch/bin
+fi
+
+# Terraform Tfswitch toml config setup
+if [[ -f "$HOME/.tfswitch.toml" ]]
+then
+    echo "File $HOME/.tfswitch.toml already exists."
+else
+    echo "File $HOME/.tfswitch.toml does not exist, creating.."
+    echo "bin = \"\$HOME/.tfswitch/bin/terraform\"" > "$HOME/.tfswitch.toml"
+fi
+
+# Install oh-my-zsh
+if [[ -d "$HOME/.oh-my-zsh" ]]
+then
+    echo "Dir $HOME/.oh-my-zsh already exists."
+else
+    echo "Dir $HOME/.oh-my-zsh does not exist, running oh-my-zsh installer."
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Create a ~/.secrets file
+if [[ -f "$HOME/.secrets" ]]
+then
+    echo "File $HOME/.secrets already exists."
+else
+    echo "File $HOME/.secrets does not exist, creating.."
+    touch "$HOME"/.secrets
+fi
+
+# Copy down iTerm profile config - needs manual upload to iTerm
+if [[ -f "$HOME/JC_iTerm.json" ]]
+then
+    echo "File $HOME/JC_iTerm.json already exists, manually upload this to iTerm."
+else
+    echo "File $HOME/JC_iTerm.json does not exist, creating.. (manually upload this to iTerm)"
+    curl -LSso "$HOME"/JC_iTerm.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/JC_iTerm.json
+fi
 
 # zsh_plugins for Antibody plugin manager
 function download_and_setup_antibody_zsh_plugins() {
