@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Node
 if ! which -s n; then
     echo "n node version manager not found, attempting install."

@@ -82,10 +82,3 @@ else
     echo "File $HOME/.antigenrc does not exist, creating.."
     curl -LSso "$HOME"/.antigenrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.antigenrc
 fi
-
-read -p "Run setup_zsh_plugins()? Yn" -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    setup_zsh_plugins
-fi

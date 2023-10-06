@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install Python via pyenv
 if ! which -s pyenv; then
     echo "pyenv not found, cannot setup Python"
