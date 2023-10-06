@@ -1,0 +1,13 @@
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-completions
+antigen bundle ohmyzsh/ohmyzsh path:plugins/aws
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle ahmetb/kubectx path:completion kind:fpath
+antigen bundle djui/alias-tips
+
+# Tell Antigen that you're done.
+antigen apply

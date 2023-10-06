@@ -18,7 +18,7 @@ if ! which -s brew; then
     brew bundle install
 else
     # Make sure we’re using the latest Homebrew.
-    echo "Homebrew already installed, updating."
+    echo "Homebrew already installed, updating.."
     brew update
     brew bundle install
 fi

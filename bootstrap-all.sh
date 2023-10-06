@@ -20,6 +20,8 @@ declare -a ListOfScripts=(
     "homebrew.sh"
     "git.sh"
     "ssh.sh"
+    "python.sh"
+    "node.sh"
     "extras.sh"
     )
 # Iterate the string array using for loop
@@ -32,3 +34,4 @@ for script in "${ListOfScripts[@]}"; do
    echo "Running $script"
    sh "${script}"
 done
+echo "bootstrap-all.sh completed"

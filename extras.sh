@@ -15,18 +15,6 @@ else
     curl -LSso "$HOME"/.zshrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/.zshrc
 fi
 
-# Install Poetry for python
-if ! which -s poetry; then
-    echo "Poetry not found, attempting install."
-    curl -sSL https://install.python-poetry.org | python3 -
-    curl -sSL https://install.python-poetry.org | POETRY_HOME="$HOME/.poetry/" python3 -
-else
-    # Make sure we’re using the latest Homebrew.
-    echo "Poetry already installed, running 'poetry self update'"
-    poetry self update
-    poetry config virtualenvs.prefer-active-python true
-fi
-
 # Silence last login messages in iTerm
 if [[ -f "$HOME/.hushlogin" ]]
 then
@@ -36,7 +24,7 @@ else
     touch "$HOME"/.hushlogin
 fi
 
-# Terraform Tfswitch binary location setup
+# Terraform tfswitch binary location setup
 if [[ -d "$HOME/.tfswitch/bin" ]]
 then
     echo "Dir $HOME/.tfswitch/bin already exists."
@@ -63,15 +51,6 @@ else
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
-# Create a ~/.secrets file
-if [[ -f "$HOME/.secrets" ]]
-then
-    echo "File $HOME/.secrets already exists."
-else
-    echo "File $HOME/.secrets does not exist, creating.."
-    touch "$HOME"/.secrets
-fi
-
 # Copy down iTerm profile config - needs manual upload to iTerm
 if [[ -f "$HOME/JC_iTerm.json" ]]
 then
@@ -81,23 +60,32 @@ else
     curl -LSso "$HOME"/JC_iTerm.json https://raw.githubusercontent.com/jasoncuriano/dotfiles/master/iterm2/JC_iTerm.json
 fi
 
-# zsh_plugins for Antibody plugin manager
-function download_and_setup_antibody_zsh_plugins() {
-    curl -LSso "$HOME"/.zsh_plugins.txt https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.zsh_plugins.txt
-    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
-    antibody update
-}
-
-if [[ -f "$HOME/.zsh_plugins.txt" ]]
+# Antigen Zsh Plugins
+if [[ -f "$HOME/.antigen.zsh" ]]
 then
-    read -p "File $HOME/.zsh_plugins.txt already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
+    echo "File $HOME/.antigen.zsh already exists."
+else
+    echo "File $HOME/.antigen.zsh does not exist, creating.."
+    curl -L git.io/antigen > "$HOME/.antigen.zsh"
+fi
+
+if [[ -f "$HOME/.antigenrc" ]]
+then
+    read -p "File $HOME/.antigenrc already exists.  Pull down a new copy from github and overwrite? Yn" -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        rm "$HOME/.zsh_plugins.txt"
-        download_and_setup_antibody_zsh_plugins
+        rm "$HOME/.antigenrc"
+        curl -LSso "$HOME"/.antigenrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.antigenrc
     fi
 else
-    echo "File $HOME/.zsh_plugins.txt does not exist, creating.."
-    download_and_setup_antibody_zsh_plugins
+    echo "File $HOME/.antigenrc does not exist, creating.."
+    curl -LSso "$HOME"/.antigenrc https://raw.githubusercontent.com/jasoncuriano/dotfiles/main/.antigenrc
+fi
+
+read -p "Run setup_zsh_plugins()? Yn" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    setup_zsh_plugins
 fi

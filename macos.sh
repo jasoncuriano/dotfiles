@@ -144,8 +144,13 @@ if [[ -f "/var/db/locate.database" ]]
 then
     echo "File /var/db/locate.database already exists." 
 else
-    echo "Error: Dir /var/db/locate.database does not exist, load locate db service.."
+    echo "Error: Dir /var/db/locate.database does not exist"
+    read -p "Create locate DB? Yn" -n 1 -r 
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then  
     sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
+    fi
 fi
 
 

@@ -161,11 +161,9 @@ PS1='$(kube_ps1)'$PS1
 
 alias wtfismyip='curl -s https://wtfismyip.com/json | jq -r'
 
-# Regen static zsh plugins https://getantibody.github.io/usage/
-function antibody_regen() {
-    antibody bundle < "$HOME"/.zsh_plugins.txt > "$HOME"/.zsh_plugins.sh
-    antibody update
-}
+# Antigen ZSH Plugins
+source $HOME/.antigen.zsh
+antigen init $HOME/.antigenrc
 
 # Git Aliases
 alias gs="git status"

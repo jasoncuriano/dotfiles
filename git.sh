@@ -2,7 +2,7 @@
 
 git config --global color.ui auto
 
-read -p "Run git user config? (user.name and user.email setup)" -n 1 -r 
+read -p "Run git user config? (user.name and user.email setup) Yn" -n 1 -r 
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then  
