@@ -122,6 +122,8 @@ fi
 ## Node
 export N_PREFIX=$HOME/.n
 export PATH=$N_PREFIX/bin:$PATH
+alias ni="npm install"
+alias nrs="npm run-script"
 
 ## Python
 export PYENV_ROOT="$HOME/.pyenv"
@@ -135,6 +137,16 @@ alias py='python'
 
 ## Terraform
 alias tf='terraform'
+# tfswitch
+load-tfswitch() {
+    local terraform_versionfile_path="main.tf"
+    
+    if [ -f "$terraform_versionfile_path" ]; then
+        tfswitch
+    fi
+}
+add-zsh-hook chpwd load-tfswitch
+load-tfswitch
 
 ## k8s
 alias k='kubectl'
@@ -155,10 +167,31 @@ function antibody_regen() {
     antibody update
 }
 
-function fix_discord() {
-    sudo killall Discord
-    rm -rf "$HOME/Library/Application Support/discord"
-    open -a "/Applications/Discord.app"
+# Git Aliases
+alias gs="git status"
+alias gg="git grep -n"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gcv="git commit -v"
+alias gca="git commit --amend -v"
+alias gap="git add -p"
+alias gac="git add -all .; git commit -v"
+alias glp="git log -p"
+alias gch="git checkout"
+alias gcb="git checkout -b"
+alias gush="git push origin "
+alias gull="git pull"
+alias gcp="git cherry-pick"
+alias gfo="git fetch origin"
+alias gfoch="git fetch origin; git checkout"
+
+# Docker Aliases
+alias dk="docker"
+alias dkc="docker-compose"
+
+function tail-docker-pretty {
+    docker logs -f $1 2>&1 | jq -R "fromjson? | . "
 }
 
-source ~/.secrets
+#Show CWD on prompt
+PROMPT=${PROMPT/\%c/\%~}
