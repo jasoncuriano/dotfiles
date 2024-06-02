@@ -22,16 +22,17 @@ declare -a ListOfScripts=(
     "ssh.sh"
     "python.sh"
     "node.sh"
+    "rust.sh"
     "extras.sh"
-    )
+)
 # Iterate the string array using for loop
 for script in "${ListOfScripts[@]}"; do
-   echo "Making $script executable"
-   chmod +x "${script}"
+    echo "Making $script executable"
+    chmod +x "${script}"
 done
 
 for script in "${ListOfScripts[@]}"; do
-   echo "Running $script"
-   sh "${script}"
+    echo "Running $script"
+    sh "${script}"
 done
 echo "bootstrap-all.sh completed"
